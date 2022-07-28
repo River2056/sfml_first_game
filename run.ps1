@@ -1,11 +1,7 @@
 $binFolder = Get-ChildItem | Where-Object { $_.Name -eq "bin" }
-if (![string]::IsNullOrEmpty($binFolder)) {
-    Remove-Item -Recurse -Force $binFolder
-}
-
 $exeFile = Get-ChildItem | Where-Object { $_.Name -Match ".*.exe" }
-if (![string]::IsNullOrEmpty($exeFile)) {
-    Remove-Item $exeFile
+if (![string]::IsNullOrEmpty($binFolder) -or ![string]::IsNullOrEmpty($exeFile)) {
+    make clean
 }
 
 make
